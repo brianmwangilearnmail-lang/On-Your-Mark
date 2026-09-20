@@ -1,0 +1,8 @@
+{
+  "name": "Remix On Your Mark - Interactive Book",
+  "description": "An interactive, micro-lesson reading journey for ON YOUR MARK by Benjamin Kasankya, featuring a Duolingo-style roadmap, verbatim original text, and reflection prompts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
