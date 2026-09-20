@@ -10,19 +10,13 @@ import { JournalView } from './components/JournalView';
 import { SearchView } from './components/SearchView';
 import { SettingsModal } from './components/SettingsModal';
 import { TutorialOverlay } from './components/TutorialOverlay';
-import { LandingPage } from './components/LandingPage';
-import { AuthForms } from './components/AuthForms';
 
 export default function App() {
-  const [authMode, setAuthMode] = useState<'landing' | 'login' | 'signup'>('landing');
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    return !!localStorage.getItem('oym_user_email');
-  });
-
   const [activeTab, setActiveTab] = useState<'roadmap' | 'journal' | 'search' | 'reader'>('roadmap');
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
   const [isTutorialOpen, setIsTutorialOpen] = useState<boolean>(false);
+
 
   // Check first time visit for tutorial
   useEffect(() => {
@@ -106,19 +100,7 @@ export default function App() {
   };
 
   return (
-    <>
-      {!isAuthenticated ? (
-        authMode === 'landing' ? (
-          <LandingPage onNavigateToAuth={(mode) => setAuthMode(mode)} />
-        ) : (
-          <AuthForms 
-            initialMode={authMode === 'login' ? 'login' : 'signup'} 
-            onBack={() => setAuthMode('landing')}
-            onSuccess={() => setIsAuthenticated(true)}
-          />
-        )
-      ) : (
-        <div className={`min-h-screen w-full max-w-full overflow-x-hidden ${getAppBgClass()} transition-colors duration-300 font-sans selection:bg-[#1CB0F6] selection:text-white`}>
+    <div className={`min-h-screen w-full max-w-full overflow-x-hidden ${getAppBgClass()} transition-colors duration-300 font-sans selection:bg-[#1CB0F6] selection:text-white`}>
       
       {/* Header bar (Visible on non-reader tabs or compact) */}
       {activeTab !== 'reader' && (
@@ -209,7 +191,6 @@ export default function App() {
         themeMode={themeMode}
       />
     </div>
-      )}
-    </>
   );
 }
+
